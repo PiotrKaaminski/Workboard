@@ -33,5 +33,7 @@
         @Html.DropDownListFor(t => t.TaskStatusId, statusSelectListItems, "Select status")
     </p>
     <br/>
-    <input type="submit" value="Add Task"/>
+    <input type="submit" class="btn btn-success" value="Add Task"/>
 }
+<br/>
+<a class="btn btn-danger" asp-controller="Home" asp-action="Index">Deny</a>
