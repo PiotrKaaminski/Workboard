@@ -1,0 +1,46 @@
+﻿@using Workboard.Mappers
+@{
+    ViewData["Title"] = "Home Page";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/home.css")" rel="stylesheet" type="text/css"/>
+}
+
+<div class="row">
+    @{
+        TaskStatusEnum[] columnOrder =
+        {
+            TaskStatusEnum.Backlog,
+            TaskStatusEnum.InProgress,
+            TaskStatusEnum.InReview,
+            TaskStatusEnum.WaitingForDeployment,
+            TaskStatusEnum.TestsInProgress,
+            TaskStatusEnum.Done,
+        };
+    }
+    
+    @foreach (var column in columnOrder)
+    {
+        List<TaskBaseModel> taskList = ViewBag.StatusTaskListMap[column];
+        
+        <div class="col">
+            <div class="status-column">
+                <div class="task-column-header">
+                    <h1>@TaskStatusMapper.MapTaskStatusToString(column)</h1>
+                    <h2>Count: @taskList.Count</h2>
+                </div>
+
+                @foreach (var task in taskList)
+                {
+                    //<div class="task-column-entry">
+                    <div class="">
+                        <a asp-controller="Task" asp-action="ViewTask" asp-route-id="@task.Id">
+                            <b>@task.Title</b>
+                        </a>
+                    </div>
+                    <br/>
+                }
+            </div>
+        </div>
+    }
+</div>

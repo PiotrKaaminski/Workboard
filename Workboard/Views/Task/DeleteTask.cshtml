@@ -1,0 +1,11 @@
+﻿@using Workboard.Models.Task
+@{
+    ViewData["Title"] = "Add Task";
+    TaskModel task = ViewBag.Task;
+}
+
+<p>Are you sure you want to delete task with title <b>@task.Title</b>?</p>
+<br/>
+<a class="btn btn-success" asp-controller="Task" asp-action="ConfirmDeleteTask" asp-route-id="@task.Id">Confirm</a>
+<br/>
+<a class="btn btn-danger" asp-controller="Task" asp-action="ViewTask" asp-route-id="@task.Id">Deny</a>

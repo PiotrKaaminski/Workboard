@@ -1,0 +1,12 @@
+strona główna:
+kolumny względem statusu tasków
+Backlog | In progress | In review | Waiting for deployment | Tests | Done
+
+w kolumnach mamy bloczki z tytułami tasków
+
+możliwość dodania taska
+
+widok taska :
+tytuł, opis, status
+
+możliwość edycji tytułu i opisu, usunięcie, zmiana statusu

@@ -1,0 +1,43 @@
+﻿@using Workboard.Models.Task
+@using Workboard.Mappers
+@model ModifyTaskRequestModel
+@{
+    ViewData["Title"] = "Modify Task";
+    TaskModel task = ViewBag.Task;
+    var statusSelectListItems = new List<SelectListItem>();
+    foreach (TaskStatusModel statusModel in ViewBag.TaskStatuses)
+    {
+        statusSelectListItems.Add(
+            new SelectListItem(
+                TaskStatusMapper.MapTaskStatusToString(statusModel.Status), 
+                statusModel.Id.ToString(),
+                statusModel.Id == task.StatusId           
+                )
+            );
+    }
+}
+<h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm("ModifyTask", "Task", FormMethod.Post))
+{
+    @Html.HiddenFor(t => t.Id, new { @value = @task.Id} )
+    <p>
+        Title: <br/>
+        <!--@Html.TextBoxFor(t => t.Title, new { @Value = @task.Title} )-->
+        <input data-val="true" data-val-required="The Title field is required." id="Title" name="Title" type="text" value="@task.Title">
+    </p>
+    <br/>
+    <p>
+        Description:<br/>
+        <textarea data-val="true" data-val-required="The Description field is required." id="Description" name="Description">@task.Description</textarea>
+    </p>
+    <br/>
+    <p>
+        Status:<br/>
+        @Html.DropDownListFor(t => t.TaskStatusId, statusSelectListItems)
+    </p>
+    <br/>
+    <input type="submit" class="btn btn-success" value="Modify Task"/>
+}
+<br/>
+<a class="btn btn-danger" asp-controller="Task" asp-action="ViewTask" asp-route-id="@task.Id">Deny</a>

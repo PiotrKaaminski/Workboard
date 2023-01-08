@@ -1,0 +1,37 @@
+﻿@using Workboard.Models.Task
+@using Workboard.Mappers
+@model AddTaskRequestModel
+@{
+    ViewData["Title"] = "Add Task";
+    var statusSelectListItems = new List<SelectListItem>();
+    foreach (TaskStatusModel statusModel in ViewBag.TaskStatuses)
+    {
+        statusSelectListItems.Add(
+            new SelectListItem(
+                TaskStatusMapper.MapTaskStatusToString(statusModel.Status), 
+                statusModel.Id.ToString()
+                )
+            );
+    }
+}
+<h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm("AddTask", "Task", FormMethod.Post))
+{
+    <p>
+        Title:: <br/>
+        @Html.TextBoxFor(t => t.Title)
+    </p>
+    <br/>
+    <p>
+        Description:<br/>
+        @Html.TextAreaFor(t => t.Description)
+    </p>
+    <br/>
+    <p>
+        Status:<br/>
+        @Html.DropDownListFor(t => t.TaskStatusId, statusSelectListItems, "Select status")
+    </p>
+    <br/>
+    <input type="submit" value="Add Task"/>
+}

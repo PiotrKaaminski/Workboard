@@ -1,0 +1,12 @@
+﻿@using Workboard.Models.Task
+@using Workboard.Mappers
+@model AddTaskRequestModel
+@{
+    ViewData["Title"] = "Task";
+    TaskModel task = ViewBag.Task;
+}
+<h3>@task.Title</h3>
+<p>@TaskStatusMapper.MapTaskStatusToString(task.Status)</p>
+<p>@task.Description</p>
+<a class="btn btn-warning" asp-controller="Task" asp-action="ModifyTask" asp-route-id="@task.Id">Modify</a>
+<a class="btn btn-danger" asp-controller="Task" asp-action="DeleteTask" asp-route-id="@task.Id">Delete</a>
