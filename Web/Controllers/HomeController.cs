@@ -1,25 +1,22 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Workboard.Context;
-using Workboard.Entities;
 using Workboard.Models;
-using Workboard.Services;
-using TaskStatus = Workboard.Entities.TaskStatus;
+using Workboard.Services.Task;
 
 namespace Workboard.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IHomePageService _homePageService;
+    private readonly ITaskService _taskService;
 
-    public HomeController(IHomePageService homePageService)
+    public HomeController(ITaskService taskService)
     {
-        _homePageService = homePageService;
+        _taskService = taskService;
     }
 
     public IActionResult Index()
     {
-        var statusTaskListMap = _homePageService.GetTasksByStatus();
+        var statusTaskListMap = _taskService.GetTasksByStatus();
         ViewBag.StatusTaskListMap = statusTaskListMap;
         return View();
     }

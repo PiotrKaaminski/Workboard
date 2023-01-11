@@ -6,6 +6,8 @@ namespace Workboard.Context;
 
 public partial class WorkboardDbContext : DbContext
 {
+    public static WorkboardDbContext Instance { get; } = new();
+
     public WorkboardDbContext()
     {
     }

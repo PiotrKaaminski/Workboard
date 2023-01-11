@@ -1,5 +1,5 @@
-using Workboard.Services;
-using Workboard.Services.Impl;
+using Core.Domain.Task.Services;
+using Core.Domain.Task.Services.Impl;
 using Workboard.Services.Task;
 using Workboard.Services.Task.Impl;
 using Workboard.Services.TaskStatus;
@@ -9,9 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IHomePageService, HomePageService>();
 builder.Services.AddScoped<ITaskStatusService, TaskStatusService>();
-builder.Services.AddScoped<ITaskService, TaskService>();
+
+builder.Services.AddScoped<IAddTaskService, AddTaskService>();
+builder.Services.AddScoped<IDeleteTaskService, DeleteTaskService>();
+builder.Services.AddScoped<IGetTasksService, GetTasksService>();
+builder.Services.AddScoped<IModifyTaskService, ModifyTaskService>();
+builder.Services.AddScoped<ITaskFacade, TaskFacade>();
+
 
 var app = builder.Build();
 

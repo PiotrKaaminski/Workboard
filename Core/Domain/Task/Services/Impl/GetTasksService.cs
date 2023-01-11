@@ -1,12 +1,21 @@
+using Microsoft.EntityFrameworkCore;
 using Workboard.Context;
 using Workboard.Models;
+using Workboard.Models.Task;
 
-namespace Workboard.Services.Impl;
+namespace Core.Domain.Task.Services.Impl;
 
-public class HomePageService : IHomePageService
+public class GetTasksService : IGetTasksService
 {
-
-    private readonly WorkboardDbContext _dbContext = new();
+    
+    private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
+    
+    public TaskModel GetTaskById(long id)
+    {
+        var task = _dbContext.Tasks.Include(t => t.Status).FirstOrDefault(t => t.Id == id);
+        Enum.TryParse(task.Status.Name, true, out TaskStatusEnum statusEnum);
+        return new TaskModel(task.Id, task.Title, task.Description, statusEnum, task.Status.Id);
+    }
     
     public Dictionary<TaskStatusEnum, List<TaskBaseModel>> GetTasksByStatus()
     {
@@ -23,5 +32,4 @@ public class HomePageService : IHomePageService
         }
         return statusTaskListMap;
     }
-
 }

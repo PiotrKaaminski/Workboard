@@ -7,7 +7,7 @@ namespace Workboard.Services.TaskStatus.Impl;
 public class TaskStatusService : ITaskStatusService
 {
 
-    private readonly WorkboardDbContext _dbContext = new();
+    private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
 
     public List<TaskStatusModel> GetStatuses()
     {
