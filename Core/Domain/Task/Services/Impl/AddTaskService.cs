@@ -8,12 +8,12 @@ public class AddTaskService : IAddTaskService
     
     private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance; 
     
-    public void AddTask(AddTaskRequestModel newTask)
+    public void AddTask(TaskDto newTask)
     {
         var taskEntity = new Workboard.Entities.Task();
         taskEntity.Title = newTask.Title;
         taskEntity.Description = newTask.Description;
-        taskEntity.StatusId = int.Parse(newTask.TaskStatusId);
+        taskEntity.StatusId = (int) newTask.StatusId;
         _dbContext.Tasks.Add(taskEntity);
         _dbContext.SaveChanges();
     }

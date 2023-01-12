@@ -9,14 +9,14 @@ public class TaskStatusService : ITaskStatusService
 
     private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
 
-    public List<TaskStatusModel> GetStatuses()
+    public List<TaskStatusDto> GetStatuses()
     {
         var statusEntities = _dbContext.TaskStatuses.OrderBy(s => s.Id);
-        var result = new List<TaskStatusModel>();
+        var result = new List<TaskStatusDto>();
         foreach (var statusEntity in statusEntities)
         {
             Enum.TryParse(statusEntity.Name, true, out TaskStatusEnum statusEnum);
-            result.Add(new TaskStatusModel(statusEntity.Id, statusEnum));
+            result.Add(new TaskStatusDto(statusEntity.Id, statusEnum));
         }
         return result;
     }

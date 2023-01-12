@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Workboard.Models;
 using Workboard.Models.Task;
+using Workboard.Services;
 using Workboard.Services.Task;
 using Workboard.Services.TaskStatus;
 
@@ -10,57 +11,55 @@ namespace Workboard.Controllers;
 public class TaskController : Controller
 {
 
-    private readonly ITaskStatusService _taskStatusService;
-    private readonly ITaskService _taskService;
+    private readonly ITaskServiceAdapter _taskServiceAdapter;
 
-    public TaskController(ITaskStatusService taskStatusService, ITaskService taskService)
+    public TaskController(ITaskServiceAdapter taskServiceAdapter)
     {
-        _taskStatusService = taskStatusService;
-        _taskService = taskService;
+        _taskServiceAdapter = taskServiceAdapter;
     }
     
     public IActionResult ViewTask(long id)
     {
-        ViewBag.Task = _taskService.GetTaskById(id);
+        ViewBag.Task = _taskServiceAdapter.GetTaskById(id);
         return View();
     }
 
     public IActionResult AddTask()
     {
-        ViewBag.TaskStatuses = _taskStatusService.GetStatuses();
+        ViewBag.TaskStatuses = _taskServiceAdapter.GetStatuses();
         return View();
     }
     
     [HttpPost]
     public IActionResult AddTask(AddTaskRequestModel newTask)
     {
-        _taskService.AddTask(newTask);
+        _taskServiceAdapter.AddTask(newTask);
         return RedirectToAction("Index", "Home");
     }
     
     public IActionResult DeleteTask(long id)
     {
-        ViewBag.Task = _taskService.GetTaskById(id);
+        ViewBag.Task = _taskServiceAdapter.GetTaskById(id);
         return View();
     }
     
     public IActionResult ConfirmDeleteTask(long id)
     {
-        _taskService.DeleteTaskById(id);
+        _taskServiceAdapter.DeleteTaskById(id);
         return RedirectToAction("Index", "Home");
     }
     
     public IActionResult ModifyTask(long id)
     {
-        ViewBag.Task = _taskService.GetTaskById(id);
-        ViewBag.TaskStatuses = _taskStatusService.GetStatuses();
+        ViewBag.Task = _taskServiceAdapter.GetTaskById(id);
+        ViewBag.TaskStatuses = _taskServiceAdapter.GetStatuses();
         return View();
     }
     
     [HttpPost]
     public IActionResult ModifyTask(ModifyTaskRequestModel modifiedTask)
     {
-        _taskService.ModifyTask(modifiedTask);
+        _taskServiceAdapter.ModifyTask(modifiedTask);
         return RedirectToAction("Index", "Home");
     }
     

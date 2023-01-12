@@ -1,5 +1,7 @@
 using Core.Domain.Task.Services;
 using Core.Domain.Task.Services.Impl;
+using Workboard.Services;
+using Workboard.Services.Impl;
 using Workboard.Services.Task;
 using Workboard.Services.Task.Impl;
 using Workboard.Services.TaskStatus;
@@ -16,6 +18,9 @@ builder.Services.AddScoped<IDeleteTaskService, DeleteTaskService>();
 builder.Services.AddScoped<IGetTasksService, GetTasksService>();
 builder.Services.AddScoped<IModifyTaskService, ModifyTaskService>();
 builder.Services.AddScoped<ITaskFacade, TaskFacade>();
+
+builder.Services.AddScoped<IHomeServiceAdapter, HomeServiceAdapterAdapter>();
+builder.Services.AddScoped<ITaskServiceAdapter, TaskServiceAdapter>();
 
 
 var app = builder.Build();

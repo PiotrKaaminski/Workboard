@@ -1,4 +1,5 @@
 ﻿@using Workboard.Mappers
+@using Workboard.Models.Home
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -21,7 +22,7 @@
     
     @foreach (var column in columnOrder)
     {
-        List<TaskBaseModel> taskList = ViewBag.StatusTaskListMap[column];
+        List<BaseTaskModel> taskList = ViewBag.StatusTaskListMap[column];
         
         <div class="col">
             <div class="status-column">

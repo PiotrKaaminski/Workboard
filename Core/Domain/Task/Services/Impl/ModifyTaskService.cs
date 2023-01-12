@@ -9,12 +9,12 @@ public class ModifyTaskService : IModifyTaskService
     
     private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
     
-    public void ModifyTask(ModifyTaskRequestModel modifiedTask)
+    public void ModifyTask(long id, TaskDto modifiedTask)
     {
-        var task = _dbContext.Tasks.Include(t => t.Status).FirstOrDefault(t => t.Id == modifiedTask.Id);
+        var task = _dbContext.Tasks.Include(t => t.Status).FirstOrDefault(t => t.Id == id);
         task.Title = modifiedTask.Title;
         task.Description = modifiedTask.Description;
-        task.StatusId = int.Parse(modifiedTask.TaskStatusId);
+        task.StatusId = (int) modifiedTask.StatusId;
         _dbContext.Tasks.Update(task);
         _dbContext.SaveChanges();
     }

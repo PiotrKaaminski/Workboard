@@ -1,11 +1,11 @@
-namespace Workboard.Models;
+namespace Workboard.Models.Task;
 
-public class TaskBaseModel
+public class BaseTaskDto
 {
     public readonly long Id;
     public readonly string Title;
 
-    public TaskBaseModel(long id, string title)
+    public BaseTaskDto(long id, string title)
     {
         Id = id;
         Title = title;

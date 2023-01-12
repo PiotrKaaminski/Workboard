@@ -20,12 +20,12 @@ public class TaskFacade : ITaskFacade
         _modifyTaskService = modifyTaskService;
     }
 
-    public void AddTask(AddTaskRequestModel newTask)
+    public void AddTask(TaskDto newTask)
     {
         _addTaskService.AddTask(newTask);
     }
 
-    public TaskModel GetTaskById(long id)
+    public TaskDto GetTaskById(long id)
     {
         return _getTasksService.GetTaskById(id);
     }
@@ -35,12 +35,12 @@ public class TaskFacade : ITaskFacade
         _deleteTaskService.DeleteTaskById(id);
     }
 
-    public void ModifyTask(ModifyTaskRequestModel modifiedTask)
+    public void ModifyTask(long id, TaskDto modifiedTask)
     {
-        _modifyTaskService.ModifyTask(modifiedTask);
+        _modifyTaskService.ModifyTask(id, modifiedTask);
     }
 
-    public Dictionary<TaskStatusEnum, List<TaskBaseModel>> GetTasksByStatus()
+    public Dictionary<TaskStatusEnum, List<BaseTaskDto>> GetTasksByStatus()
     {
         return _getTasksService.GetTasksByStatus();
     }

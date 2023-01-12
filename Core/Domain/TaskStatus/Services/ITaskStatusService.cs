@@ -4,6 +4,6 @@ namespace Workboard.Services.TaskStatus;
 
 public interface ITaskStatusService
 {
-    public List<TaskStatusModel> GetStatuses();
+    public List<TaskStatusDto> GetStatuses();
     
 }
