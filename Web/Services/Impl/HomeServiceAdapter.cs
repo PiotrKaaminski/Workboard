@@ -5,12 +5,12 @@ using Workboard.Services.Task;
 
 namespace Workboard.Services.Impl;
 
-public class HomeServiceAdapterAdapter : IHomeServiceAdapter
+public class HomeServiceAdapter : IHomeServiceAdapter
 {
 
     private readonly ITaskFacade _taskFacade;
 
-    public HomeServiceAdapterAdapter(ITaskFacade taskFacade)
+    public HomeServiceAdapter(ITaskFacade taskFacade)
     {
         _taskFacade = taskFacade;
     }

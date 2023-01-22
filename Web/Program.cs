@@ -19,7 +19,7 @@ builder.Services.AddScoped<IGetTasksService, GetTasksService>();
 builder.Services.AddScoped<IModifyTaskService, ModifyTaskService>();
 builder.Services.AddScoped<ITaskFacade, TaskFacade>();
 
-builder.Services.AddScoped<IHomeServiceAdapter, HomeServiceAdapterAdapter>();
+builder.Services.AddScoped<IHomeServiceAdapter, HomeServiceAdapter>();
 builder.Services.AddScoped<ITaskServiceAdapter, TaskServiceAdapter>();
 
 

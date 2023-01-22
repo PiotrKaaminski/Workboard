@@ -8,11 +8,11 @@ public partial class WorkboardDbContext : DbContext
 {
     public static WorkboardDbContext Instance { get; } = new();
 
-    public WorkboardDbContext()
+    private WorkboardDbContext()
     {
     }
 
-    public WorkboardDbContext(DbContextOptions<WorkboardDbContext> options)
+    private WorkboardDbContext(DbContextOptions<WorkboardDbContext> options)
         : base(options)
     {
     }
