@@ -8,7 +8,7 @@ namespace Core.Domain.Task.Services.Impl;
 public class GetTasksService : IGetTasksService
 {
     
-    private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
+    private readonly WorkboardDbContext _dbContext = new();
     
     public TaskDto GetTaskById(long id)
     {

@@ -7,7 +7,7 @@ namespace Core.Domain.Task.Services.Impl;
 public class ModifyTaskService : IModifyTaskService
 {
     
-    private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
+    private readonly WorkboardDbContext _dbContext = new();
     
     public void ModifyTask(long id, TaskDto modifiedTask)
     {

@@ -5,8 +5,8 @@ namespace Core.Domain.Task.Services.Impl;
 
 public class AddTaskService : IAddTaskService
 {
-    
-    private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance; 
+
+    private readonly WorkboardDbContext _dbContext = new();
     
     public void AddTask(TaskDto newTask)
     {

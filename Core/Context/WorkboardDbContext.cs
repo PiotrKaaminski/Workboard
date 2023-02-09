@@ -6,13 +6,11 @@ namespace Workboard.Context;
 
 public partial class WorkboardDbContext : DbContext
 {
-    public static WorkboardDbContext Instance { get; } = new();
-
-    private WorkboardDbContext()
+    public WorkboardDbContext()
     {
     }
 
-    private WorkboardDbContext(DbContextOptions<WorkboardDbContext> options)
+    public WorkboardDbContext(DbContextOptions<WorkboardDbContext> options)
         : base(options)
     {
     }

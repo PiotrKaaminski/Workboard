@@ -5,7 +5,7 @@ namespace Core.Domain.Task.Services.Impl;
 public class DeleteTaskService : IDeleteTaskService
 {
     
-    private readonly WorkboardDbContext _dbContext = WorkboardDbContext.Instance;
+    private readonly WorkboardDbContext _dbContext = new();
     
     public void DeleteTaskById(long id)
     {
